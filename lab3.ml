@@ -122,8 +122,14 @@ invariant is violated, or returns the color back if it's valid.
 
 exception Invalid_Color of string ;;
 
-let valid_rgb = 
-  fun _ -> failwith "valid_rgb not implemented" ;;
+let valid_rgb c =
+match c with
+Red -> (255, 0, 0)
+| Green -> (0, 255, 0)
+| Blue -> (0, 0, 255)
+| Yellow -> (255, 255, 0)
+| RGB (r, g, b) -> (r, g, b)
+;;
 
 (*......................................................................
 Exercise 3: Write a function, make_color, that accepts three integers
@@ -255,10 +261,19 @@ Exercise 9: Create a valid_date function that raises Invalid_Date if
 the invariant is violated, and returns the date if valid.
 ......................................................................*)
 
-exception Invalid_Date of string ;;
 
-let valid_date = 
-  fun _ -> failwith "valid_date not implemented" ;;
+let valid_date (day: day) (mon: month) (yr: year) = 
+  try
+    if mon > 12 then raise Invalid_Date in
+     if (year > 2017) | (year < 1800) then raise Invalid_Date in
+      if ((mon = 1 | 3 | 5 | 7 | 8 | 10 | 12) && day > 31) then raise Invalid_Date in
+       if ((mon = 4 | 6 | 9 | 11) && day > 30) then raise Invalid_Date in
+        if ((mon = 2) && day > 29 ) then raise Invalid_Date in
+         if year mod 
+
+  with 
+    exception Invalid_Date of "please only enter a valid date." 
+;;
 
 
 (*======================================================================
@@ -272,11 +287,11 @@ Exercise 10: Define a person record type. Use the field names "name",
 "favorite", and "birthdate".
 ......................................................................*)
 
-type person = {
-  name: string;
-  favoriate: string;
-  birthdate: date;
-} ;;
+type person = 
+| name: string
+| favorite: Color
+| birthdate: Date
+;;
 
 (* Let's now do something with these person valuess. We'll create a
 data structure that allows us to model simple familial relationships.
