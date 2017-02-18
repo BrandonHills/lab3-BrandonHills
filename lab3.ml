@@ -55,7 +55,8 @@ be any of the following options: red, crimson, orange, yellow, green,
 blue, indigo, or violet.
 ......................................................................*)
 
-type color_label = Blue | Red | Yellow | Green | Crimson | Orange ;;
+type color_label = Red | Crimson | Orange | Yellow | Green 
+| Blue | Indigo | Violet ;;
 
 (* You've just defined a new variant type! But this is an overly
 simplistic representation of colors. Let's make it more usable.
